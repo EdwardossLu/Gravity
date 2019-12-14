@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+
+    [SerializeField] private readonly float speed = 5f;
 
     private Rigidbody _rb;
     private bool flipGravity = true;
