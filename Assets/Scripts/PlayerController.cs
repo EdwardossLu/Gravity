@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class PlayerController : MonoBehaviour
 {
     [Header("General")]
+    
     [Tooltip("Adjust the speed of the character.")]
     [SerializeField] private float speed = 5f;
 

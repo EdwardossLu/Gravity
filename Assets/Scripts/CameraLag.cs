@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class CameraLag : MonoBehaviour
 {
     [Header("General")]
+    
     [SerializeField] private Transform target = null;
 
     [Tooltip("The lag distance between points. Lower number = higher distance")]
