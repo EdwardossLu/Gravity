@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class FollowPlayer : MonoBehaviour
+public class CameraLag : MonoBehaviour
 {
     [Header("General")]
-    [SerializeField]private Transform target = null;
+    [SerializeField] private Transform target = null;
+
+    [Tooltip("The lag distance between points. Lower number = higher distance")]
     [Range(0.01f, 0.1f)] [SerializeField] private float smoothFactor = 0f;
 
     private Vector3 _cameraOffest;
