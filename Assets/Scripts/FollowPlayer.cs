@@ -27,6 +27,8 @@ public class FollowPlayer : MonoBehaviour
     {
         // Set the distance between the camera and target.
 		Vector3 newPos = target.position + _cameraOffest;
-		transform.position = Vector3.Slerp(transform.position, newPos, smoothFactor);
+
+        if (transform.position - newPos != Vector3.zero)
+		    transform.position = Vector3.Slerp(transform.position, newPos, smoothFactor);
 	}
 }
