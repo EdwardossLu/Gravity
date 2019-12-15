@@ -5,7 +5,6 @@ using UnityEngine.Assertions;
 
 public class LazerBeam : MonoBehaviour
 {
-
     private bool _switchLazerState = true;
     
     private Renderer _rend;
