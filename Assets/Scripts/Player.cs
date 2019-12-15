@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private readonly float speed = 5f;
+    [SerializeField] private float speed = 5f;
 
     private Rigidbody _rb;
     private bool flipGravity = true;
