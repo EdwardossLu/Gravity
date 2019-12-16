@@ -35,7 +35,7 @@ public class PathSystem : MonoBehaviour
 
         if (!_waypointDirection)
         {
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[1].position, waypointMoveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[1].position, waypointMoveSpeed);
 
             if (Vector3.Distance(transform.position, waypoints[1].position) < 0.001f)
             {
@@ -44,7 +44,7 @@ public class PathSystem : MonoBehaviour
         }
         else if (_waypointDirection)
         {
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[0].position, waypointMoveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[0].position, waypointMoveSpeed);
 
             if (Vector3.Distance(transform.position, waypoints[0].position) < 0.001f)
             {
