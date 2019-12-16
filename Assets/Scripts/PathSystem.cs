@@ -9,11 +9,15 @@ public class PathSystem : MonoBehaviour
     [Tooltip("How fast the object should move between waypoints.")]
     [Range(0.1f, 10f)] [SerializeField] private float speed = 1f;
 
+    [Tooltip("How long should we wait until we move to the next waypoint.")]
+    [SerializeField] private float waitingTimer = 1f;
+
     [Tooltip("List of waypoints for the object to move towards.")]
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
 
     private int _point = 0;
-    private bool _waypointDirection = false;
+
+    private float _timer = 0;
     
 
     private void Awake() 
@@ -28,27 +32,26 @@ public class PathSystem : MonoBehaviour
 
     private void MoveToNewWaypoint()
     {
-        /*TODO:  Make this system move dynamic for future use.
-                       Remove hard coded values. */ 
-                       
         float waypointMoveSpeed = speed * Time.deltaTime;
 
-        if (!_waypointDirection)
+        if (_point != waypoints.Count && Time.time >= _timer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[1].position, waypointMoveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[_point].position, waypointMoveSpeed);
 
-            if (Vector3.Distance(transform.position, waypoints[1].position) < 0.001f)
+            if (transform.position == waypoints[_point].position)
             {
-                _waypointDirection = true;
+                ++_point;
+                _timer = Time.time + waitingTimer;
             }
         }
-        else if (_waypointDirection)
+        else if (_point == waypoints.Count && Time.time >= _timer)
         {
             transform.position = Vector3.MoveTowards(transform.position, waypoints[0].position, waypointMoveSpeed);
 
-            if (Vector3.Distance(transform.position, waypoints[0].position) < 0.001f)
+            if (transform.position == waypoints[0].position)
             {
-                _waypointDirection = false;
+                _point = 0;
+                _timer = Time.time + waitingTimer;
             }
         }
     }
