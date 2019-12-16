@@ -27,10 +27,10 @@ public class PathSystem : MonoBehaviour
 
     private void Update() 
     {
-        MoveToNewWaypoint();
+        MoveToNextWaypoint();
     }
 
-    private void MoveToNewWaypoint()
+    private void MoveToNextWaypoint()
     {
         float waypointMoveSpeed = speed * Time.deltaTime;
 
