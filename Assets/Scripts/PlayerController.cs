@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     [Header("General")]
     
-    [Tooltip("Adjust the speed of the character.")]
+    [Tooltip("The speed of the character.")]
     [SerializeField] private float speed = 5f;
+
+    [Tooltip("How fast should the character fly")]
+    [Range(100f, 300f)] [SerializeField] private float flipedGravitySpeed = 150f;
 
     private Rigidbody _rb;
 
-    private bool flipGravity = true;
+    private bool _flipGravity = true;
 
 
     private void Awake() 
@@ -21,22 +24,30 @@ public class PlayerController : MonoBehaviour
         Assert.IsNotNull(_rb);
     }
 
-    private void Update() 
+    private void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        _rb.MovePosition(transform.position + transform.TransformDirection(Vector3.right * moveHorizontal));
-
         if (Input.GetKeyDown(KeyCode.Space))     
             FlipGravity();
     }
 
+    private void FixedUpdate() 
+    {
+        CharacterMovement();
+    }
+
+    private void CharacterMovement()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        _rb.MovePosition(transform.position + transform.TransformDirection(Vector3.right * moveHorizontal));
+    }
+
     private void FlipGravity()
     {
-        flipGravity = !flipGravity;
+        _flipGravity = !_flipGravity;
 
-        _rb.useGravity = flipGravity;
+        _rb.useGravity = _flipGravity;
         
-        if (flipGravity == false)
-            _rb.velocity = Vector3.up * 5f;
+        if (_flipGravity == false)
+            _rb.AddForce(Vector3.up * 150f);
     }
 }
