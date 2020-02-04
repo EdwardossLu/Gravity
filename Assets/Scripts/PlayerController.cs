@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Toggle the gravity of the player.
         if (Input.GetKeyDown(KeyCode.Space))     
             FlipGravity();
     }
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         _rb.MovePosition(transform.position + transform.TransformDirection(Vector3.right * moveHorizontal));
     }
 
+    // Change the gravity of the player.
     private void FlipGravity()
     {
         _flipGravity = !_flipGravity;

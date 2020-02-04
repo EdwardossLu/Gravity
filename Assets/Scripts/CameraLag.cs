@@ -31,7 +31,9 @@ public class CameraLag : MonoBehaviour
         // Set the distance between the camera and target.
 		Vector3 newPos = target.position + _cameraOffest;
 
+        // if the distance between the two transform isn't zero.
         if (transform.position - newPos != Vector3.zero)
+            // Move the character to the player.
 		    transform.position = Vector3.Slerp(transform.position, newPos, smoothFactor);
 	}
 }

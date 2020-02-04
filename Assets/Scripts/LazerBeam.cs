@@ -5,6 +5,8 @@ using UnityEngine.Assertions;
 
 public class LazerBeam : MonoBehaviour
 {
+    [SerializeField] private float beamTimer = 2f;
+
     private bool _switchLazerState = true;
     
     private Renderer _rend;
@@ -22,15 +24,17 @@ public class LazerBeam : MonoBehaviour
         StartCoroutine("SetBeamVisability");
     }
 
+    // Toggle the visibility of the the light beam.
     private IEnumerator SetBeamVisability()
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(beamTimer);
             BeamToggle();
         }
     }
 
+    // Change the rendering of the the light beam.
     private void BeamToggle()
     {
         _switchLazerState = !_switchLazerState;

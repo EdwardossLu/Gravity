@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b39d9f0026a18346adac371a617c9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3.44
   waitingTimer: 0
   waypoints:
   - {fileID: 1242511694}
@@ -1245,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b984f225be3904095c714503a993dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beamTimer: 2
 --- !u!1 &1765176709
 GameObject:
   m_ObjectHideFlags: 0
