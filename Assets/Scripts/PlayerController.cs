@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("How fast should the character fly")]
     [Range(100f, 300f)] [SerializeField] private float flipedGravitySpeed = 150f;
 
+    [SerializeField] private GameObject playerChar = null;
+
+    private Animator animator = null;
+
     private Rigidbody _rb;
 
     private bool _flipGravity = true;
@@ -22,6 +26,11 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         Assert.IsNotNull(_rb);
+    }
+
+    private void Start() 
+    {
+        animator = playerChar.GetComponent<Animator>();
     }
 
     private void Update()
@@ -40,12 +49,19 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         _rb.MovePosition(transform.position + transform.TransformDirection(Vector3.right * moveHorizontal));
+
+        animator.SetFloat("inputX", moveHorizontal);
+        print(moveHorizontal);
     }
 
     // Change the gravity of the player.
     private void FlipGravity()
     {
         _flipGravity = !_flipGravity;
+
+        animator.SetBool("appGrav", _flipGravity);
+
+        print(_flipGravity);
 
         _rb.useGravity = _flipGravity;
         
